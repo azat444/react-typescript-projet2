@@ -6,7 +6,6 @@ import ListPage from "./pages/List";
 import HomePage from "./pages/Home";
 import { AnimalProvider } from "./context/animalContext";
 
-// Define the routes and which components they render here
 const router = createBrowserRouter([
   {
     path: "/",

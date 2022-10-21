@@ -12,11 +12,9 @@ const HomePage = () => {
   const [time, setTime] = useState(dayjs().format("HH:mm:ss"));
   const [day, setDay] = useState(dayjs().format("dddd"));
 
-  // read value from context
   const { animal } = useContext(AnimalContext);
 
   useEffect(() => {
-    // update the date, time and day every 5 second
     const interval = setInterval(() => {
       console.log("Interval ran");
       setDate(dayjs().format("YYYY-MM-DD"));
@@ -25,7 +23,6 @@ const HomePage = () => {
     }, 5000);
 
     return () => {
-      // clear the interval when the component unmounts
       console.log("Interval cleared");
       clearInterval(interval);
     };

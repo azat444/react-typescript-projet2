@@ -12,7 +12,6 @@ export const AnimalContext = React.createContext<AnimalContextType>({
   saveAnimal: () => {},
 });
 
-// Create a Provider for Context
 export const AnimalProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [animal, setAnimal] = useState<AnimalType | null>(null);
 
