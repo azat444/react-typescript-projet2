@@ -8,21 +8,21 @@ import axios from 'axios'
 
 const columns =[
     {
-        title:'First Name',
-        dataIndex:'first_name',
-        key:'first_name'
+        title:'animal',
+        dataIndex:'animal',
+        key:'animal'
 
     } ,
     {
-        title:'Last Name',
-        dataIndex:'last_name',
-        key:'last_name'
+        title:'diet',
+        dataIndex:'diet',
+        key:'diet'
 
     },
     {
-        title:'email',
-        dataIndex:'email',
-        key:'first_name'
+        title:'test',
+        dataIndex:'test',
+        key:'test'
 
     }
 

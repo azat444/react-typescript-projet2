@@ -30,12 +30,12 @@ const HomePage = () => {
 
   return (
     <>
-      <Link to={"/list"}> Go To ListPage</Link>
+      <Link to={"/list"}><br/>  clique sur la liste !</Link>
 
      <div>
-        <p>Current date: {date}</p>
-        <p>Current time: {time}</p>
-        <p>Current day of the week: {day}</p>
+        <p> <br/> Date : {date}</p>
+        <p> <br/> Heure : {time}</p>
+        <p> <br/> Jour : {day}</p>
       </div> 
 
       {animal ? (
@@ -45,7 +45,7 @@ const HomePage = () => {
           pagination={false}
         />
       ) : (
-        <p>No Animal Saved</p>
+        <p><br/> pas d'animaux pour l'instant</p>
       )}
     </>
   );
