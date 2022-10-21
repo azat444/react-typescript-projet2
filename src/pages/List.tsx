@@ -1,70 +1,69 @@
-import React , {useState , useEffect } from 'react'
-import Layout, { Header, Content, Footer } from 'antd/lib/layout/layout'
-import Sider from 'antd/lib/layout/Sider'
-import { Table, Row, Col } from 'antd';
-import axios from 'axios'
+import { useState, useEffect, useContext } from "react";
+import { Table } from "antd";
+import "antd/dist/antd.css";
+import { AnimalType } from "../util/AnimalDataType";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { AnimalContext } from "../context/animalContext";
+import { animalsColumns } from "../util/columns";
 
+const Button = styled.button`
+  background: transparent;
+  border-radius: 3px;
+  border: 2px solid black;
+  color: black;
+`;
 
+const ListPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [list, setList] = useState([]);
+  const { saveAnimal } = useContext(AnimalContext);
 
-const columns =[
+  const animalsColumnsWithSaveBtn = [
+    ...animalsColumns,
     {
-        title:'animal',
-        dataIndex:'animal',
-        key:'animal'
-
-    } ,
-    {
-        title:'diet',
-        dataIndex:'diet',
-        key:'diet'
-
+      title: "Save",
+      key: "save",
+      render: (text: string, record: AnimalType) => (
+        <Button
+          onClick={() => {
+            console.log("record", record);
+            saveAnimal(record);
+          }}
+        >
+          Save
+        </Button>
+      ),
     },
-    {
-        title:'test',
-        dataIndex:'test',
-        key:'test'
+  ];
 
-    }
+  const fetchAnimals = () => {
+    setIsLoading(true);
+    fetch("http://zoo-animal-api.herokuapp.com/animals/rand/10")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setList(data);
+      });
+    setIsLoading(false);
+  };
 
-]
+  useEffect(() => {
+    fetchAnimals();
+  }, []);
 
+  return (
+    <div>
+      <Link to={"/"}>Go To HomePage</Link>
 
+      <Table
+        columns={animalsColumnsWithSaveBtn}
+        dataSource={list}
+        loading={isLoading}
+        pagination={false}
+      />
+    </div>
+  );
+};
 
-const ListUser = () =>{
-    const [data, setdata] = useState([])
-    const [loading, setloading] = useState(true)
-    
-
-    useEffect(() => {
-        getData() }
-    , [])
-
-    const getData = async () =>{
-        const res = await axios.get('https://zoo-animal-api.herokuapp.com/animals/rand')
-        setloading(false)
-        setdata(  res.data.data.map(row =>({name:row.first_name,last_name:row.last_name })) );
-                
-    }
-
-    return (
-        <Layout>
-            <Header>Header </Header>
-            
-                <Content  style={{padding:50}}>
-                    <Row>
-                        <Col span={30}/>
-                        <Col span={18}>
-                            <Table dataSource={data} columns={columns} />
-                        </Col>
-                        <Col span={3}/>
-                    </Row>
-
-
-                </Content>
-            
-           <Footer>Footer</Footer> 
-        </Layout>
-    )
-}
-
-export default ListUser
+export default ListPage;

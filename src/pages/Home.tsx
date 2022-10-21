@@ -30,13 +30,24 @@ const HomePage = () => {
 
   return (
     <>
-      <Link to={"/list"}><br/>  clique sur la liste !</Link>
+      <Link to={"/list"}>
+        <br /> clique sur la liste !
+      </Link>
 
-     <div>
-        <p> <br/> Date : {date}</p>
-        <p> <br/> Heure : {time}</p>
-        <p> <br/> Jour : {day}</p>
-      </div> 
+      <div>
+        <p>
+          {" "}
+          <br /> Date : {date}
+        </p>
+        <p>
+          {" "}
+          <br /> Heure : {time}
+        </p>
+        <p>
+          {" "}
+          <br /> Jour : {day}
+        </p>
+      </div>
 
       {animal ? (
         <Table
@@ -45,7 +56,9 @@ const HomePage = () => {
           pagination={false}
         />
       ) : (
-        <p><br/> pas d'animaux pour l'instant</p>
+        <p>
+          <br /> pas d'animaux pour l'instant
+        </p>
       )}
     </>
   );

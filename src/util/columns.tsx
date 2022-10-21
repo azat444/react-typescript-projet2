@@ -8,6 +8,7 @@ export const animalsColumns = [
     title: "Image",
     dataIndex: "image_link",
     key: "image_link",
+
     render: (image_link: string) => (
       <img src={image_link} alt="animal" width="100" />
     ),
