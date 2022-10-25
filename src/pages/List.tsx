@@ -1,8 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
-import { Table } from 'antd'
+import { Button, Table } from 'antd'
 import 'antd/dist/antd.css'
 import { AnimalType } from '../util/AnimalDataType'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { AnimalContext } from '../context/animalContext'
 import { animalsColumns } from '../util/columns'
@@ -10,7 +9,7 @@ import { animalsColumns } from '../util/columns'
 const ListPage = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [list, setList] = useState([])
-  const { saveAnimal } = useContext(AnimalContext)
+  const { animal, saveAnimal } = useContext(AnimalContext)
 
   const animalsColumnsWithSaveBtn = [
     ...animalsColumns,
@@ -19,12 +18,12 @@ const ListPage = () => {
       key: 'save',
       render: (text: string, record: AnimalType) => (
         <Button
-          onClick={() => {
-            console.log('record', record)
-            saveAnimal(record)
-          }}
+          type={animal?.id === record.id ? 'primary' : 'ghost'}
+          shape="round"
+          size={'large'}
+          onClick={() => saveAnimal(record)}
         >
-          Save
+          {animal?.id === record.id ? 'Saved' : 'Save'}
         </Button>
       ),
     },
@@ -57,12 +56,5 @@ const ListPage = () => {
     </div>
   )
 }
-
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid black;
-  color: black;
-`
 
 export default ListPage

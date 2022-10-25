@@ -7,9 +7,9 @@ import 'antd/dist/antd.css'
 import { animalsColumns } from '../util/columns'
 
 const HomePage = () => {
-  const [date, setDate] = useState(dayjs().format('YYYY-MM-DD'))
-  const [time, setTime] = useState(dayjs().format('HH:mm:ss'))
-  const [day, setDay] = useState(dayjs().format('dddd'))
+  const [date, setDate] = useState<string>(dayjs().format('DD-MM-YYYY'))
+  const [time, setTime] = useState<string>(dayjs().format('HH:mm:ss'))
+  const [day, setDay] = useState<string>(dayjs().format('dddd'))
 
   const { animal } = useContext(AnimalContext)
 
@@ -29,20 +29,21 @@ const HomePage = () => {
 
   return (
     <>
-      <Link to={'/list'}>
-        <br /> clique sur la liste !
-      </Link>
+      <Link to={'/list'}>clique sur la liste</Link>
 
       <div>
-        <p>
-          <br /> Date : {date}
-        </p>
-        <p>
-          <br /> Heure : {time}
-        </p>
-        <p>
-          <br /> Jour : {day}
-        </p>
+        <h2>
+          <br />
+          Date: {date}
+        </h2>
+        <h2>
+          <br />
+          Time: {time}
+        </h2>
+        <h2>
+          <br />
+          Day: {day}
+        </h2>
       </div>
 
       {animal ? (
@@ -53,7 +54,8 @@ const HomePage = () => {
         />
       ) : (
         <p>
-          <br /> pas d'animaux pour l'instant
+          <br />
+          pas d'animaux pour l'instant
         </p>
       )}
     </>
